@@ -4,18 +4,49 @@ import org.openqa.selenium.By;
 
 public class ObjectsListPage {
 
-    public By orders = By.xpath("//a[text()='Заявки']");
+    //HEADER
 
-    public By renters = By.xpath("//a[text()='Арендаторы']");
+    public By reports = By.name("qa-head-reports");
 
-    public By objects = By.xpath("//a[text()='Объекты']");
+    public By objects = By.name("qa-head-objects");
 
-    public By elementInOrdersList = By.xpath("//div[@class='col-md-10']/div[@class='page-header']/h1[text()='Заявки']");
+    public By orders = By.name("qa-head-orders");
 
-    public By elementInRentersList = By.xpath("//div[@class='col-md-10']/div[@class='page-header']/h1" +
-            "[text()='Арендаторы']");
+    public By renters = By.name("qa-head-objects");
 
-    public By elementInObjectsList = By.xpath("//div[@class='page-header']/h1[contains(text(), 'Объекты')]");
+    public By invoices = By.name("qa-head-invoices");
+
+    public By allServices = By.name("qa-head-all-services");
+
+    public By services = By.name("qa-head-services");
+
+    public By passes = By.name("qa-head-passes");
+
+    public By ads = By.name("qa-head-ads");
+
+    public By promos = By.name("qa-head-promos");
+
+    //H1
+
+    public By elementInReportsList = By.name("qa-h1-reports");
+
+    public By elementInObjectsList = By.name("qa-h1-objects");
+
+    public By elementInOrdersList = By.name("qa-h1-orders");
+
+    public By elementInRentersList = By.name("qa-h1-renters");
+
+    public By elementInInvoicesList = By.name("qa-h1-invoices");
+
+    public By elementInServicesList = By.name("qa-h1-services");
+
+    public By elementInPassesList = By.name("qa-h1-passes");
+
+    public By elementInAdsList = By.name("qa-h1-ads");
+
+    public By elementInPromosList = By.name("qa-h1-promos");
+    
+
 
     public By addNewObject = By.xpath("//a[@ui-sref='dashboard.realtyAdd']");
 
