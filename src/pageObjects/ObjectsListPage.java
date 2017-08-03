@@ -12,7 +12,7 @@ public class ObjectsListPage {
 
     public By orders = By.name("qa-head-orders");
 
-    public By renters = By.name("qa-head-objects");
+    public By renters = By.name("qa-head-renters");
 
     public By invoices = By.name("qa-head-invoices");
 
@@ -25,6 +25,8 @@ public class ObjectsListPage {
     public By ads = By.name("qa-head-ads");
 
     public By promos = By.name("qa-head-promos");
+
+    public By logOut = By.name("qa-logout");
 
     //H1
 
@@ -45,16 +47,12 @@ public class ObjectsListPage {
     public By elementInAdsList = By.name("qa-h1-ads");
 
     public By elementInPromosList = By.name("qa-h1-promos");
-    
+
 
 
     public By addNewObject = By.xpath("//a[@ui-sref='dashboard.realtyAdd']");
 
     public By elementInAddObjectForm = By.xpath("//h1[@class='ng-binding'][text()='Добавление объекта']");
-
-    public By submit = By.xpath("//button");
-
-    public By logOut = By.xpath("//i[@class='fa et-down fa-sign-out']");
 
     public By addObject = By.xpath("//button[@type='submit'][contains(text(), 'Добавить')]");
 

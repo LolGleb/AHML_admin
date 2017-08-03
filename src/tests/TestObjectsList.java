@@ -46,6 +46,14 @@ public class TestObjectsList extends Helper {
 
         ObjectsListPage page = new ObjectsListPage();
 
+        click(page.reports);
+
+        waitBy(page.elementInReportsList, 20);
+
+        click(page.objects);
+
+        waitBy(page.elementInObjectsList, 20);
+
         click(page.orders);
 
         waitBy(page.elementInOrdersList, 20);
@@ -54,13 +62,33 @@ public class TestObjectsList extends Helper {
 
         waitBy(page.elementInRentersList, 20);
 
-        click(page.objects);
+        click(page.invoices);
 
-        waitBy(auth.elementInObjectsList, 20);
+        waitBy(page.elementInInvoicesList, 20);
+
+        click(page.allServices);
+
+        click(page.services);
+
+        waitBy(page.elementInServicesList, 20);
+
+        click(page.allServices);
+
+        click(page.passes);
+
+        waitBy(page.elementInPassesList, 20);
+
+        click(page.ads);
+
+        waitBy(page.elementInAdsList, 20);
+
+        click(page.promos);
+
+        waitBy(page.elementInPromosList, 20);
 
         click(page.logOut);
 
-        waitBy(page.submit, 20);
+        waitBy(auth.submit, 20);
 
     }
 
