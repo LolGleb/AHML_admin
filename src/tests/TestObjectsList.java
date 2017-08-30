@@ -1,18 +1,20 @@
 package tests;
 
 import data.CommonData;
-import framework.Configuration;
 import framework.Helper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import pageObjects.AuthorizationPage;
+import pageObjects.ObjectsAddPage;
 import pageObjects.ObjectsListPage;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class TestObjectsList extends Helper {
@@ -93,7 +95,7 @@ public class TestObjectsList extends Helper {
     }
 
     @Test(description = "Добавление объекта", priority = 1)
-    public void addObject() throws InterruptedException, AWTException {
+    public void addObject() throws InterruptedException, AWTException, IOException {
 
         // </Авторизация
         AuthorizationPage auth = new AuthorizationPage();
@@ -102,112 +104,155 @@ public class TestObjectsList extends Helper {
         waitBy(auth.elementInObjectsList, 20);
         // Авторизация>
 
-        ObjectsListPage page = new ObjectsListPage();
+        ObjectsListPage list = new ObjectsListPage();
 
-        click(page.addNewObject);
+        ObjectsAddPage add = new ObjectsAddPage();
 
-        waitBy(page.elementInAddObjectForm, 20);
+        click(list.addNewObject);
+
+        waitBy(add.elementInAddObjectForm, 20);
 
         sleep(2000);
 
-        driver.findElement(page.apartNumber).sendKeys("1");
+        String s = readTXT("apartNumber.txt").trim();
+        int y = Integer.parseInt(s);
 
-        driver.findElement(page.price).sendKeys("555000");
+        new WebDriverWait(driver, 5).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='checkbox']")));
+        driver.findElements(By.xpath("//input[@type='checkbox']")).stream().parallel().forEach(WebElement::click);
 
-        driver.findElement(page.deposit).clear();
-        driver.findElement(page.deposit).sendKeys("55");
+        List<WebElement> checkboxes = driver.findElements(By.xpath("//input[@type='checkbox']"));
+        for (WebElement a : checkboxes){
+            Assert.assertTrue(a.isSelected());
+        }
 
-        driver.findElement(page.minMonth).clear();
-        driver.findElement(page.minMonth).sendKeys("12");
-        click(page.noPets);
-        click(page.noChildren);
-        click(page.noSmoke);
+        driver.findElement(add.price).sendKeys("555000");
 
-        driver.findElement(page.floor).sendKeys("7");
+        driver.findElement(add.deposit).clear();
+        driver.findElement(add.deposit).sendKeys("55");
 
-        click(page.room0);
-        click(page.room1);
-        click(page.room3);
-        click(page.room4);
-        click(page.room5);
-        click(page.room6);
-        click(page.room7);
-        click(page.room2);
+        driver.findElement(add.minMonth).clear();
+        driver.findElement(add.minMonth).sendKeys("12");
 
-        driver.findElement(page.areaTotal).sendKeys("9999");
-        driver.findElement(page.areaKitchen).sendKeys("888");
-        driver.findElement(page.areaLiving).sendKeys("77");
-        driver.findElement(page.areaRooms1).sendKeys("6");
-        driver.findElement(page.areaRooms2).sendKeys("5555.55");
+        driver.findElement(add.floor).sendKeys("7");
 
-        click(page.decorBeige);
-        click(page.decorWhite);
-        click(page.decorBeige);
+        click(add.room0);
+        Assert.assertTrue(driver.findElement(add.room0).getAttribute("class").contains("active"));
+        click(add.room1);
+        Assert.assertTrue(driver.findElement(add.room1).getAttribute("class").contains("active"));
+        click(add.room3);
+        Assert.assertTrue(driver.findElement(add.room3).getAttribute("class").contains("active"));
+        click(add.room4);
+        Assert.assertTrue(driver.findElement(add.room4).getAttribute("class").contains("active"));
+        click(add.room5);
+        Assert.assertTrue(driver.findElement(add.room5).getAttribute("class").contains("active"));
+        click(add.room6);
+        Assert.assertTrue(driver.findElement(add.room6).getAttribute("class").contains("active"));
+        click(add.room7);
+        Assert.assertTrue(driver.findElement(add.room7).getAttribute("class").contains("active"));
+        click(add.room2);
+        Assert.assertTrue(driver.findElement(add.room2).getAttribute("class").contains("active"));
 
-        click(page.noFurniture);
-        click(page.furNational);
-        click(page.furIkea);
-        click(page.furElite);
+        driver.findElement(add.areaTotal).sendKeys("333,33");
+        driver.findElement(add.areaKitchen).sendKeys("44.44");
+        driver.findElement(add.areaLiving).sendKeys("55,5");
+        driver.findElement(add.areaRooms1).sendKeys("66.6");
+        driver.findElement(add.areaRooms2).sendKeys("77");
 
-        click(page.repairNormal);
-        click(page.repairRussian);
-        click(page.repairEuro);
-        click(page.repairElite);
-        click(page.needRepair);
+        click(add.decorBeige);
+        Assert.assertTrue(driver.findElement(add.decorBeige).getAttribute("class").contains("active"));
+        click(add.decorWhite);
+        Assert.assertTrue(driver.findElement(add.decorWhite).getAttribute("class").contains("active"));
+        click(add.decorBeige);
+        Assert.assertTrue(driver.findElement(add.decorBeige).getAttribute("class").contains("active"));
 
-        click(page.noBalcony1);
-        click(page.balcony1);
-        click(page.loggia1);
-        click(page.addBalcony);
-        click(page.noBalcony2);
-        click(page.loggia2);
-        click(page.balcony2);
-        click(page.addBalcony);
-        click(page.delBalcony1);
-        click(page.addBalcony);
-        click(page.delBalcony2);
-        click(page.addBalcony);
-        click(page.delBalcony3);
-        click(page.addBalcony);
-        click(page.loggia1);
-        click(page.balcony2);
-        click(page.noBalcony3);
-        click(page.addBalcony);
+        click(add.noFurniture);
+        Assert.assertTrue(driver.findElement(add.noFurniture).getAttribute("class").contains("active"));
+        click(add.furNational);
+        Assert.assertTrue(driver.findElement(add.furNational).getAttribute("class").contains("active"));
+        click(add.furIkea);
+        Assert.assertTrue(driver.findElement(add.furIkea).getAttribute("class").contains("active"));
+        click(add.furElite);
+        Assert.assertTrue(driver.findElement(add.furElite).getAttribute("class").contains("active"));
 
-        click(page.wcsSeparate1);
-        click(page.wcsComb1);
-        click(page.addWcs);
-        click(page.wcsSeparate2);
-        click(page.wcsComb2);
-        click(page.addWcs);
-        click(page.delWcs1);
-        click(page.addWcs);
-        click(page.delWcs2);
-        click(page.addWcs);
-        click(page.delWcs3);
-        click(page.addWcs);
-        click(page.wcsSeparate2);
+        click(add.repairNormal);
+        Assert.assertTrue(driver.findElement(add.repairNormal).getAttribute("class").contains("active"));
+        click(add.repairRussian);
+        Assert.assertTrue(driver.findElement(add.repairRussian).getAttribute("class").contains("active"));
+        click(add.repairEuro);
+        Assert.assertTrue(driver.findElement(add.repairEuro).getAttribute("class").contains("active"));
+        click(add.repairElite);
+        Assert.assertTrue(driver.findElement(add.repairElite).getAttribute("class").contains("active"));
+        click(add.needRepair);
+        Assert.assertTrue(driver.findElement(add.needRepair).getAttribute("class").contains("active"));
 
-        click(page.windowComb);
-        click(page.windowStreet);
-        click(page.windowYard);
+        click(add.noBalcony1);
+        Assert.assertTrue(driver.findElement(add.noBalcony1).getAttribute("class").contains("active"));
+        click(add.balcony1);
+        Assert.assertTrue(driver.findElement(add.balcony1).getAttribute("class").contains("active"));
+        click(add.loggia1);
+        Assert.assertTrue(driver.findElement(add.loggia1).getAttribute("class").contains("active"));
+        click(add.addBalcony);
+        click(add.noBalcony2);
+        Assert.assertTrue(driver.findElement(add.noBalcony2).getAttribute("class").contains("active"));
+        click(add.loggia2);
+        Assert.assertTrue(driver.findElement(add.loggia2).getAttribute("class").contains("active"));
+        click(add.balcony2);
+        Assert.assertTrue(driver.findElement(add.balcony2).getAttribute("class").contains("active"));
+        click(add.addBalcony);
+        click(add.delBalcony1);
+        click(add.addBalcony);
+        click(add.delBalcony2);
+        click(add.addBalcony);
+        click(add.delBalcony3);
+        click(add.addBalcony);
+        click(add.loggia1);
+        Assert.assertTrue(driver.findElement(add.loggia1).getAttribute("class").contains("active"));
+        click(add.balcony2);
+        Assert.assertTrue(driver.findElement(add.balcony2).getAttribute("class").contains("active"));
+        click(add.noBalcony3);
+        Assert.assertTrue(driver.findElement(add.noBalcony3).getAttribute("class").contains("active"));
+        click(add.addBalcony);
 
-        click(page.conditioner);
-        click(page.internet);
-        click(page.phone);
-        click(page.washer);
-        click(page.fridge);
-        click(page.appliances);
-        click(page.tv);
-        click(page.doubleGlazing);
-        click(page.signaling);
+        click(add.wcsSeparate1);
+        Assert.assertTrue(driver.findElement(add.wcsSeparate1).getAttribute("class").contains("active"));
+        click(add.wcsComb1);
+        Assert.assertTrue(driver.findElement(add.wcsComb1).getAttribute("class").contains("active"));
+        click(add.addWcs);
+        click(add.wcsSeparate2);
+        Assert.assertTrue(driver.findElement(add.wcsSeparate2).getAttribute("class").contains("active"));
+        click(add.wcsComb2);
+        Assert.assertTrue(driver.findElement(add.wcsComb2).getAttribute("class").contains("active"));
+        click(add.addWcs);
+        click(add.delWcs1);
+        click(add.addWcs);
+        click(add.delWcs2);
+        click(add.addWcs);
+        click(add.delWcs3);
+        click(add.addWcs);
+        click(add.wcsSeparate2);
+        Assert.assertTrue(driver.findElement(add.wcsSeparate2).getAttribute("class").contains("active"));
 
-        driver.findElement(page.passport).sendKeys("Автоматизированное тестирование программного " +
+        click(add.windowComb);
+        click(add.windowStreet);
+        click(add.windowYard);
+
+        driver.findElement(add.passport).sendKeys("Автоматизированное тестирование программного " +
                 "обеспечения (Software Automation Testing) - это процесс верификации программного обеспечения, при " +
                 "котором основные функции и шаги теста, такие как запуск, инициализация, выполнение, анализ и выдача " +
                 "результата, выполняются автоматически при помощи инструментов для автоматизированного тестирования.");
+        click(add.passportSwitchToEng);
+        driver.findElement(add.passport).sendKeys("Automated software testing" +
+                "Software Automation Testing is a process of software verification, with" +
+                "What are the basic functions and steps of the test, such as starting, initializing, executing, analyzing and issuing" +
+                "The result is done automatically using tools for automated testing.");
+        click(add.passportSwitchToRu);
 
-        driver.findElement(page.tour3d).sendKeys("https://agent.33slona.ru/");
+        driver.findElement(add.description).sendKeys("Очень хорошее описание апартамента на русском языке");
+        click(add.descriptionSwitchToEng);
+        driver.findElement(add.description).sendKeys("Very good description of the apartment in English");
+        click(add.descriptionSwitchToRu);
+
+        driver.findElement(add.tour3d).sendKeys("https://agent.33slona.ru/");
 
         String filePath1 = System.getProperty("user.dir") + "\\files\\001.jpg";
         setClipboardData(filePath1);
@@ -260,14 +305,37 @@ public class TestObjectsList extends Helper {
 
         sleep(5000);
 
-        click(page.dropDownPhoto);
-        click(page.optionPhotoWindow);
-        click(page.dropDownPhoto);
-        //click(page.delPhoto3b); - надо доработать!
+        click(add.dropDownPhoto);
+        click(add.optionPhotoWindow);
+        click(add.dropDownPhoto);
+        click(add.delPhoto3b);
 
-        click(page.addObject);
+        for(;;){
 
-        waitBy(page.elementInObjectsList, 20);
+            String ss = String.valueOf(y);
+
+            driver.findElement(add.apartNumber).clear();
+            driver.findElement(add.apartNumber).sendKeys(ss);
+
+            click(add.saveObject);
+
+            sleep(3000);
+
+            if(isElementPresent(By.cssSelector("div.text-danger"))){
+
+                y++;
+
+            } else {
+
+                writeToFile("apartNumber.txt", ss);
+
+                break;
+
+            }
+
+        }
+
+        waitBy((By.xpath("//div{text()='Объект создан'}")), 20);
 
     }
 
@@ -281,79 +349,80 @@ public class TestObjectsList extends Helper {
         waitBy(auth.elementInObjectsList, 20);
         // Авторизация>
 
-        ObjectsListPage page = new ObjectsListPage();
+        ObjectsListPage list = new ObjectsListPage();
 
-        click(page.dropdown);
+        ObjectsAddPage add = new ObjectsAddPage();
 
-        click(page.editObject);
+        click(list.dropdown);
 
-        waitBy(page.elementInEditObjectForm, 20);
+        click(list.editObject);
+
+        waitBy(add.elementInAddObjectForm, 20);
 
         sleep(2000);
 
-        driver.findElement(page.apartNumber).clear();
-        driver.findElement(page.apartNumber).sendKeys("2");
+        driver.findElement(add.apartNumber).clear();
+        driver.findElement(add.apartNumber).sendKeys("2");
 
-        driver.findElement(page.price).clear();
-        driver.findElement(page.price).sendKeys("777000");
+        driver.findElement(add.price).clear();
+        driver.findElement(add.price).sendKeys("777000");
 
-        driver.findElement(page.deposit).clear();
-        driver.findElement(page.deposit).sendKeys("10");
+        driver.findElement(add.deposit).clear();
+        driver.findElement(add.deposit).sendKeys("10");
 
-        driver.findElement(page.minMonth).clear();
-        driver.findElement(page.minMonth).sendKeys("1");
+        driver.findElement(add.minMonth).clear();
+        driver.findElement(add.minMonth).sendKeys("1");
 
-        click(page.noPets);
-        click(page.noChildren);
-        click(page.noSmoke);
+        click(add.noPets);
+        click(add.noChildren);
+        click(add.noSmoke);
 
-        driver.findElement(page.floor).clear();
-        driver.findElement(page.floor).sendKeys("15");
+        driver.findElement(add.floor).clear();
+        driver.findElement(add.floor).sendKeys("15");
 
-        click(page.room1);
+        click(add.room1);
 
-        driver.findElement(page.areaTotal).clear();
-        driver.findElement(page.areaTotal).sendKeys("11.11");
-        driver.findElement(page.areaKitchen).clear();
-        driver.findElement(page.areaKitchen).sendKeys("333");
-        driver.findElement(page.areaLiving).clear();
-        driver.findElement(page.areaLiving).sendKeys("55");
-        driver.findElement(page.areaRooms1).clear();
-        driver.findElement(page.areaRooms1).sendKeys("7");
+        driver.findElement(add.areaTotal).clear();
+        driver.findElement(add.areaTotal).sendKeys("11.11");
+        driver.findElement(add.areaKitchen).clear();
+        driver.findElement(add.areaKitchen).sendKeys("333");
+        driver.findElement(add.areaLiving).clear();
+        driver.findElement(add.areaLiving).sendKeys("55");
+        driver.findElement(add.areaRooms1).clear();
+        driver.findElement(add.areaRooms1).sendKeys("7");
 
-        click(page.decorWhite);
+        click(add.decorWhite);
 
-        click(page.noFurniture);
+        click(add.noFurniture);
 
-        click(page.repairRussian);
+        click(add.repairRussian);
 
-        click(page.balcony1);
-        click(page.loggia2);
+        click(add.balcony1);
+        click(add.loggia2);
 
-        click(page.wcsSeparate1);
-        click(page.delWcs3);
-        click(page.wcsComb2);
+        click(add.wcsSeparate1);
+        click(add.delWcs3);
+        click(add.wcsComb2);
 
-        click(page.windowComb);
+        click(add.windowComb);
 
-        click(page.conditioner);
-        click(page.internet);
-        click(page.phone);
-        click(page.washer);
-        click(page.fridge);
-        click(page.appliances);
-        click(page.tv);
-        click(page.doubleGlazing);
-        click(page.signaling);
+        click(add.conditioner);
+        click(add.internet);
+        click(add.washer);
+        click(add.fridge);
+        click(add.appliances);
+        click(add.tv);
+        click(add.doubleGlazing);
+        click(add.signaling);
 
-        driver.findElement(page.passport).clear();
-        driver.findElement(page.passport).sendKeys("Инструмент для автоматизированного тестирования " +
+        driver.findElement(add.passport).clear();
+        driver.findElement(add.passport).sendKeys("Инструмент для автоматизированного тестирования " +
                 "(Automation Test Tool) - это программное обеспечение, посредством которого специалист по " +
                 "автоматизированному тестированию осуществляет создание, отладку, выполнение и анализ результатов " +
                 "прогона тест скриптов.");
 
-        driver.findElement(page.tour3d).clear();
-        driver.findElement(page.tour3d).sendKeys("https://33slona.ru/");
+        driver.findElement(add.tour3d).clear();
+        driver.findElement(add.tour3d).sendKeys("https://33slona.ru/");
 
         String filePath = System.getProperty("user.dir") + "\\files\\004.jpg";
         setClipboardData(filePath);
@@ -372,14 +441,14 @@ public class TestObjectsList extends Helper {
 
         sleep(5000);
 
-        click(page.dropDownPhoto);
-        click(page.optionPhotoKitchen);
-        click(page.dropDownPhoto);
-        //click(page.delPhoto2); - надо доработать!
+        click(add.dropDownPhoto);
+        click(add.optionPhotoKitchen);
+        click(add.dropDownPhoto);
+        //click(add.delPhoto2); - надо доработать!
 
-        click(page.saveObject);
+        click(add.saveObject);
 
-        waitBy(page.elementInObjectsList, 20);
+        waitBy(list.elementInObjectsList, 20);
 
         // !!! уточнить о проверке чекбоксов !!!
         /*List<WebElement> selCheckboxes = driver.findElements(page.conditioner);

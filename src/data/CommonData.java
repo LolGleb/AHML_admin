@@ -1,7 +1,5 @@
 package data;
 
-import org.openqa.selenium.By;
-
 public class CommonData {
 
     //авторизация

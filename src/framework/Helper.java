@@ -13,8 +13,7 @@ import pageObjects.AuthorizationPage;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class Helper {
 
@@ -108,4 +107,54 @@ public class Helper {
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
     }
 
+    protected void writeToFile(String filePass, String data) throws IOException {
+
+        FileWriter writer = new FileWriter(filePass, false);
+        writer.write(data);
+        writer.flush();
+
+    }
+
+    private void exists(String fileName) throws FileNotFoundException {
+        File file = new File(fileName);
+        if (!file.exists()){
+            throw new FileNotFoundException(file.getName());
+        }
+    }
+
+    protected String readTXT(String fileName) throws FileNotFoundException {
+
+        StringBuilder sb = new StringBuilder();
+        exists(fileName);
+        try {
+            File file = new File(fileName);
+            //Объект для чтения файла в буфер
+            BufferedReader in = new BufferedReader(new FileReader(file.getAbsoluteFile()));
+            try {
+                //В цикле построчно считываем файл
+                String s;
+                while ((s = in.readLine()) != null) {
+                    sb.append(s);
+                    sb.append("\n");
+                }
+            } finally {
+                //Также не забываем закрыть файл
+                in.close();
+            }
+        } catch(IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        //Возвращаем полученный текст с файла
+        return sb.toString();
+    }
+
+    protected boolean isElementPresent(By by){
+        try {
+            driver.findElement(by);
+            return true;
+        } catch (NoSuchElementException ex){
+            return false;
+        }
+    }
 }
