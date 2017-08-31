@@ -125,79 +125,79 @@ public class TestObjectsList extends Helper {
             Assert.assertTrue(a.isSelected());
         }
 
-        driver.findElement(add.price).sendKeys("555000");
+        sendKeys(add.price,"555000");
 
         driver.findElement(add.deposit).clear();
-        driver.findElement(add.deposit).sendKeys("55");
+        sendKeys(add.deposit,"55");
 
         driver.findElement(add.minMonth).clear();
-        driver.findElement(add.minMonth).sendKeys("12");
+        sendKeys(add.minMonth,"12");
 
-        driver.findElement(add.floor).sendKeys("7");
+        sendKeys(add.floor,"7");
 
         click(add.room0);
-        Assert.assertTrue(driver.findElement(add.room0).getAttribute("class").contains("active"));
+        radioActive(add.room0);
         click(add.room1);
-        Assert.assertTrue(driver.findElement(add.room1).getAttribute("class").contains("active"));
+        radioActive(add.room1);
         click(add.room3);
-        Assert.assertTrue(driver.findElement(add.room3).getAttribute("class").contains("active"));
+        radioActive(add.room3);
         click(add.room4);
-        Assert.assertTrue(driver.findElement(add.room4).getAttribute("class").contains("active"));
+        radioActive(add.room4);
         click(add.room5);
-        Assert.assertTrue(driver.findElement(add.room5).getAttribute("class").contains("active"));
+        radioActive(add.room5);
         click(add.room6);
-        Assert.assertTrue(driver.findElement(add.room6).getAttribute("class").contains("active"));
+        radioActive(add.room6);
         click(add.room7);
-        Assert.assertTrue(driver.findElement(add.room7).getAttribute("class").contains("active"));
+        radioActive(add.room7);
         click(add.room2);
-        Assert.assertTrue(driver.findElement(add.room2).getAttribute("class").contains("active"));
+        radioActive(add.room2);
 
-        driver.findElement(add.areaTotal).sendKeys("333,33");
-        driver.findElement(add.areaKitchen).sendKeys("44.44");
-        driver.findElement(add.areaLiving).sendKeys("55,5");
-        driver.findElement(add.areaRooms1).sendKeys("66.6");
-        driver.findElement(add.areaRooms2).sendKeys("77");
+        sendKeys(add.areaTotal,"333,33");
+        sendKeys(add.areaKitchen,"44.44");
+        sendKeys(add.areaLiving,"55,5");
+        sendKeys(add.areaRooms1,"66.6");
+        sendKeys(add.areaRooms2,"77");
 
         click(add.decorBeige);
-        Assert.assertTrue(driver.findElement(add.decorBeige).getAttribute("class").contains("active"));
+        radioActive(add.decorBeige);
         click(add.decorWhite);
-        Assert.assertTrue(driver.findElement(add.decorWhite).getAttribute("class").contains("active"));
+        radioActive(add.decorWhite);
         click(add.decorBeige);
-        Assert.assertTrue(driver.findElement(add.decorBeige).getAttribute("class").contains("active"));
+        radioActive(add.decorBeige);
 
         click(add.noFurniture);
-        Assert.assertTrue(driver.findElement(add.noFurniture).getAttribute("class").contains("active"));
+        radioActive(add.noFurniture);
         click(add.furNational);
-        Assert.assertTrue(driver.findElement(add.furNational).getAttribute("class").contains("active"));
+        radioActive(add.furNational);
         click(add.furIkea);
-        Assert.assertTrue(driver.findElement(add.furIkea).getAttribute("class").contains("active"));
+        radioActive(add.furIkea);
         click(add.furElite);
-        Assert.assertTrue(driver.findElement(add.furElite).getAttribute("class").contains("active"));
+        radioActive(add.furElite);
 
         click(add.repairNormal);
-        Assert.assertTrue(driver.findElement(add.repairNormal).getAttribute("class").contains("active"));
+        radioActive(add.repairNormal);
         click(add.repairRussian);
-        Assert.assertTrue(driver.findElement(add.repairRussian).getAttribute("class").contains("active"));
+        radioActive(add.repairRussian);
         click(add.repairEuro);
-        Assert.assertTrue(driver.findElement(add.repairEuro).getAttribute("class").contains("active"));
+        radioActive(add.repairEuro);
         click(add.repairElite);
-        Assert.assertTrue(driver.findElement(add.repairElite).getAttribute("class").contains("active"));
+        radioActive(add.repairElite);
         click(add.needRepair);
-        Assert.assertTrue(driver.findElement(add.needRepair).getAttribute("class").contains("active"));
+        radioActive(add.needRepair);
 
         click(add.noBalcony1);
-        Assert.assertTrue(driver.findElement(add.noBalcony1).getAttribute("class").contains("active"));
+        radioActive(add.noBalcony1);
         click(add.balcony1);
-        Assert.assertTrue(driver.findElement(add.balcony1).getAttribute("class").contains("active"));
+        radioActive(add.balcony1);
         click(add.loggia1);
-        Assert.assertTrue(driver.findElement(add.loggia1).getAttribute("class").contains("active"));
+        radioActive(add.loggia1);
         click(add.addBalcony);
         click(add.noBalcony2);
-        Assert.assertTrue(driver.findElement(add.noBalcony2).getAttribute("class").contains("active"));
+        radioActive(add.noBalcony2);
         click(add.loggia2);
-        Assert.assertTrue(driver.findElement(add.loggia2).getAttribute("class").contains("active"));
+        radioActive(add.loggia2);
         click(add.balcony2);
-        Assert.assertTrue(driver.findElement(add.balcony2).getAttribute("class").contains("active"));
+        radioActive(add.balcony2);
         click(add.addBalcony);
         click(add.delBalcony1);
         click(add.addBalcony);
@@ -206,22 +206,22 @@ public class TestObjectsList extends Helper {
         click(add.delBalcony3);
         click(add.addBalcony);
         click(add.loggia1);
-        Assert.assertTrue(driver.findElement(add.loggia1).getAttribute("class").contains("active"));
+        radioActive(add.loggia1);
         click(add.balcony2);
-        Assert.assertTrue(driver.findElement(add.balcony2).getAttribute("class").contains("active"));
+        radioActive(add.balcony2);
         click(add.noBalcony3);
-        Assert.assertTrue(driver.findElement(add.noBalcony3).getAttribute("class").contains("active"));
+        radioActive(add.noBalcony3);
         click(add.addBalcony);
 
         click(add.wcsSeparate1);
-        Assert.assertTrue(driver.findElement(add.wcsSeparate1).getAttribute("class").contains("active"));
+        radioActive(add.wcsSeparate1);
         click(add.wcsComb1);
-        Assert.assertTrue(driver.findElement(add.wcsComb1).getAttribute("class").contains("active"));
+        radioActive(add.wcsComb1);
         click(add.addWcs);
         click(add.wcsSeparate2);
-        Assert.assertTrue(driver.findElement(add.wcsSeparate2).getAttribute("class").contains("active"));
+        radioActive(add.wcsSeparate2);
         click(add.wcsComb2);
-        Assert.assertTrue(driver.findElement(add.wcsComb2).getAttribute("class").contains("active"));
+        radioActive(add.wcsComb2);
         click(add.addWcs);
         click(add.delWcs1);
         click(add.addWcs);
@@ -230,31 +230,34 @@ public class TestObjectsList extends Helper {
         click(add.delWcs3);
         click(add.addWcs);
         click(add.wcsSeparate2);
-        Assert.assertTrue(driver.findElement(add.wcsSeparate2).getAttribute("class").contains("active"));
+        radioActive(add.wcsSeparate2);
 
         click(add.windowComb);
+        radioActive(add.windowComb);
         click(add.windowStreet);
+        radioActive(add.windowStreet);
         click(add.windowYard);
+        radioActive(add.windowYard);
 
-        driver.findElement(add.passport).sendKeys("Автоматизированное тестирование программного " +
+        sendKeys(add.passport,"Автоматизированное тестирование программного " +
                 "обеспечения (Software Automation Testing) - это процесс верификации программного обеспечения, при " +
                 "котором основные функции и шаги теста, такие как запуск, инициализация, выполнение, анализ и выдача " +
                 "результата, выполняются автоматически при помощи инструментов для автоматизированного тестирования.");
         click(add.passportSwitchToEng);
-        driver.findElement(add.passport).sendKeys("Automated software testing" +
+        sendKeys(add.passport,"Automated software testing" +
                 "Software Automation Testing is a process of software verification, with" +
                 "What are the basic functions and steps of the test, such as starting, initializing, executing, analyzing and issuing" +
                 "The result is done automatically using tools for automated testing.");
         click(add.passportSwitchToRu);
 
-        driver.findElement(add.description).sendKeys("Очень хорошее описание апартамента на русском языке");
+        sendKeys(add.description,"Очень хорошее описание апартамента на русском языке");
         click(add.descriptionSwitchToEng);
-        driver.findElement(add.description).sendKeys("Very good description of the apartment in English");
+        sendKeys(add.description,"Very good description of the apartment in English");
         click(add.descriptionSwitchToRu);
 
-        driver.findElement(add.tour3d).sendKeys("https://agent.33slona.ru/");
+        sendKeys(add.tour3d,"https://agent.33slona.ru/");
 
-        String filePath1 = System.getProperty("user.dir") + "\\files\\001.jpg";
+        String filePath1 = System.getProperty("user.dir") + "\\files\\001.png";
         setClipboardData(filePath1);
         WebElement input1 = driver.findElement(By.xpath("//input[@type='file']"));
         input1.click();
@@ -336,6 +339,8 @@ public class TestObjectsList extends Helper {
         }
 
         waitBy((By.xpath("//div{text()='Объект создан'}")), 20);
+
+        driver.findElement().getText();
 
     }
 

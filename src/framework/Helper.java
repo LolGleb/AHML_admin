@@ -9,6 +9,7 @@ import org.openqa.selenium.interactions.Mouse;
 import org.openqa.selenium.internal.Locatable;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import pageObjects.AuthorizationPage;
 
 import java.awt.*;
@@ -47,6 +48,10 @@ public class Helper {
         waitBy(by, 10);
         driver.findElement(by).click();
 
+    }
+
+    protected void sendKeys(By by,String keys){
+        driver.findElement(by).sendKeys(keys);
     }
 
     // Таймаут по поиску элемента
@@ -156,5 +161,9 @@ public class Helper {
         } catch (NoSuchElementException ex){
             return false;
         }
+    }
+
+    protected void radioActive(By by){
+        Assert.assertTrue(driver.findElement(by).getAttribute("class").contains("active"));
     }
 }
