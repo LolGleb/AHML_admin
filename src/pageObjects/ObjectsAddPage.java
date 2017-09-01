@@ -107,9 +107,7 @@ public class ObjectsAddPage {
     public By dropDownPhoto = By.xpath("//div[1]/select");
     public By optionPhotoWindow = By.xpath("//div[1]/select/option[7]");
     public By optionPhotoKitchen = By.xpath("//div[1]/select[@ng-model='file.place']/option[text()='Кухня']");
-    public By delPhoto3a = By.xpath("//div[3]/div[@class='item-preview-close']/span[@style='color: rgb(255, 255, 255);']");
-    public By delPhoto3b = By.xpath("//button[@class='btn btn-danger item-preview-close']");
-    public By delPhoto2 = By.xpath("//div[2]/div[@class='item-preview-close']/span[@title='Удалить']");
+    public By delPhoto2 = By.xpath("//div[2]/button[@class='btn btn-danger item-preview-close']");
 
 
     // Параметры объекта>

@@ -50,11 +50,13 @@ public class ObjectsCardPage {
 
     public By tour = By.xpath("//div[21]/div[2][@class='col-sm-10 ng-binding ng-scope']");
 
-    public By photo1 = By.xpath("");
+    public By photo1 = By.xpath("//div[1]/div[1]/img");
 
-    public By photo2 = By.xpath("");
+    public By photo2 = By.xpath("//div[2]/div[1]/img");
 
-    public By dropdown1 = By.xpath("");
+    public By dropdown1 = By.xpath("//div[1]/div[2][@class='ng-binding']");
 
-    public By dropdown2 = By.xpath("");
+    public By dropdown2 = By.xpath("//div[2]/div[2][@class='ng-binding']");
+
+    public By toastSuccess = By.xpath("//div[text()='Объект создан']");
 }

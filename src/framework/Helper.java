@@ -166,4 +166,16 @@ public class Helper {
     protected void radioActive(By by){
         Assert.assertTrue(driver.findElement(by).getAttribute("class").contains("active"));
     }
+
+    protected void textCorrect(By by, String s){
+        String text1 = driver.findElement(by).getText();
+
+        String text2 = s;
+
+        try{
+            Assert.assertTrue(text1.contains(text2));
+        } catch (AssertionError ex){
+            throw new RuntimeException(text1+"не то же самое что"+text2);
+        }
+    }
 }

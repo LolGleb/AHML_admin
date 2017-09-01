@@ -49,9 +49,13 @@ public class ObjectsListPage {
     public By elementInPromosList = By.name("qa-h1-promos");
 
 
-    public By filterSearch = By.xpath("/html/body/div/div[2]/div/div[2]/div/multi-filter/div/div[1]/div[2]/input");
+    public By filterSearch = By.xpath("//input");
 
-    public By filterFloor = By.xpath("");
+    public By filterFloor = By.xpath("//div[@class='multi-filters-toolbar-element ng-scope floor-filter']");
+
+    public By filterRoom = By.xpath("//div[@class='multi-filters-toolbar-element ng-scope room-filter']");
+
+    public By filterStatus= By.xpath("//div[@class='multi-filters-toolbar-element ng-scope status-filter']");
 
     public By addNewObject = By.name("qa-add-obj-btn");
 
