@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 public class ObjectsCardPage {
 
-    public By elemntInObjectCard = By.xpath("//h1[contains(text(), 'Апартамент')]");
+    public By elementInObjectCard = By.xpath("//h1[contains(text(), 'Апартамент')]");
 
     public By apartNumber = By.xpath("//div[4]//div[2][@class='col-sm-10 ng-binding']");
 
@@ -58,5 +58,5 @@ public class ObjectsCardPage {
 
     public By dropdown2 = By.xpath("//div[2]/div[2][@class='ng-binding']");
 
-    public By toastSuccess = By.xpath("//div[text()='Объект создан']");
+    public By toastSuccess = By.xpath("//div[@class='toast toast-success']");
 }

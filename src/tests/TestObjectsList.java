@@ -342,12 +342,13 @@ public class TestObjectsList extends Helper {
             click(add.saveObject);
 
             sleep(5000);
-
-            if(isElementPresent(By.cssSelector("div.text-danger"))){
-
+            System.out.println("start1");
+            if(isElementPresent(By.xpath("//div[@class='text-danger ng-binding ng-scope']"))){
+                System.out.println("start2");
                 y++;
 
             } else {
+                System.out.println("start3");
 
                 writeToFile("apartNumber.txt", ss);
 
@@ -360,7 +361,9 @@ public class TestObjectsList extends Helper {
 
         // </Проверка карточки
         waitBy(card.toastSuccess, 20);
-        waitBy(card.elemntInObjectCard, 20);
+        waitBy(card.elementInObjectCard, 20);
+
+        apartNumberFromTxt = readTXT("apartNumber.txt").trim();
 
         textCorrect(card.apartNumber, apartNumberFromTxt);
         textCorrect(card.price, price);
@@ -414,6 +417,8 @@ public class TestObjectsList extends Helper {
 
         ObjectsAddPage add = new ObjectsAddPage();
 
+        ObjectsCardPage card = new ObjectsCardPage();
+
         String apartNumberFromTxt = readTXT("apartNumber.txt").trim();
         String price = "777 000";
         String deposit = "10";
@@ -433,6 +438,8 @@ public class TestObjectsList extends Helper {
         String descriptionEn = "I HAVE EDITED THIS WITH THE HELP OF AUTOMATION";
         String tour = "https://33slona.ru/";
 
+        sendKeys(list.filterSearch, apartNumberFromTxt);
+
         waitBy(list.dropdown, 20);
 
         click(list.dropdown);
@@ -451,31 +458,31 @@ public class TestObjectsList extends Helper {
             Assert.assertFalse(a.isSelected());
         }
 
-        textCorrect(add.apartNumber, apartNumberFromTxt);
+        valueCorrect(add.apartNumber, apartNumberFromTxt);
 
         driver.findElement(add.price).clear();
         sendKeys(add.price, price);
 
         driver.findElement(add.deposit).clear();
-        driver.findElement(add.deposit).sendKeys(deposit);
+        sendKeys(add.deposit ,deposit);
 
         driver.findElement(add.minMonth).clear();
-        driver.findElement(add.minMonth).sendKeys(minMonth);
+        sendKeys(add.minMonth, minMonth);
 
         driver.findElement(add.floor).clear();
-        driver.findElement(add.floor).sendKeys(floor);
+        sendKeys(add.floor ,floor);
 
         click(add.room1);
         radioActive(add.room1);
 
         driver.findElement(add.areaTotal).clear();
-        driver.findElement(add.areaTotal).sendKeys(areaTotal);
+        sendKeys(add.areaTotal, areaTotal);
         driver.findElement(add.areaKitchen).clear();
-        driver.findElement(add.areaKitchen).sendKeys(areaKitchen);
+        sendKeys(add.areaKitchen, areaKitchen);
         driver.findElement(add.areaLiving).clear();
-        driver.findElement(add.areaLiving).sendKeys(areaLiving);
+        sendKeys(add.areaLiving, areaLiving);
         driver.findElement(add.areaRooms1).clear();
-        driver.findElement(add.areaRooms1).sendKeys(areaRooms1);
+        sendKeys(add.areaRooms1 ,areaRooms1);
 
         click(add.decorWhite);
         radioActive(add.decorWhite);
@@ -541,11 +548,34 @@ public class TestObjectsList extends Helper {
 
         click(add.saveObject);
 
-        waitBy(list.elementInObjectsList, 20);
+        waitBy(card.toastSuccess, 20);
+        waitBy(card.elementInObjectCard, 20);
 
+        textCorrect(card.apartNumber, apartNumberFromTxt);
+        textCorrect(card.price, price);
+        textCorrect(card.deposit, deposit);
+        textCorrect(card.minRent, minMonth);
+        textCorrect(card.floor, floor);
+        textCorrect(card.rooms, "1");
+        textCorrect(card.areaTotal, areaTotal);
+        textCorrect(card.areaKitchen, areaKitchen);
+        textCorrect(card.areaLiving, areaLiving);
+        textCorrect(card.livingRoom1, areaRooms1);
+        textCorrect(card.decor, "Белый");
+        textCorrect(card.furniture, "Без мебели");
+        textCorrect(card.repair, "Советский");
+        //textCorrect(card.balcony, "2 балкона и Лоджия");
+        //textCorrect(card.wc,"2 совмещенных и Раздельный");
+        textCorrect(card.view, "На улицу и двор");
+        textCorrect(card.passport, passportRu);
+        textCorrect(card.description, descriptionRu);
+        textCorrect(card.tour, tour);
+        waitBy(card.photo1, 20);
+        waitBy(card.photo2, 20);
+        textCorrect(card.dropdown1, "Кухня");
+        textCorrect(card.dropdown2, "Не определен");
     }
 
-    // Добавить проверку на добавленные фото, на отметки чекбоксов и удаление фото
     // Добавить метод открытия, перелистывания и закрытия фото
 
 }

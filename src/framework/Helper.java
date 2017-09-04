@@ -167,15 +167,25 @@ public class Helper {
         Assert.assertTrue(driver.findElement(by).getAttribute("class").contains("active"));
     }
 
-    protected void textCorrect(By by, String s){
+    protected void textCorrect(By by, String text2){
         String text1 = driver.findElement(by).getText();
-
-        String text2 = s;
-
         try{
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            WebElement element = driver.findElement(by);
+            js.executeScript("arguments[0].setAttribute('style', 'border:1px solid red')",element);
             Assert.assertTrue(text1.contains(text2));
         } catch (AssertionError ex){
-            throw new RuntimeException(text1+"не то же самое что"+text2);
+            throw new RuntimeException(text1+" не то же самое, что "+text2);
+        }
+    }
+
+    protected void valueCorrect(By by, String text){
+        String value1 = driver.findElement(by).getAttribute("value");
+
+        try{
+            Assert.assertTrue(value1.contains(text));
+        } catch (AssertionError ex){
+            throw new RuntimeException(value1+" не то же самое что "+text);
         }
     }
 }
