@@ -113,6 +113,7 @@ public class Helper {
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
     }
 
+    // Запись в файл
     protected void writeToFile(String filePass, String data) throws IOException {
 
         FileWriter writer = new FileWriter(filePass, false);
@@ -121,6 +122,7 @@ public class Helper {
 
     }
 
+    // Проверка файла на существование
     private void exists(String fileName) throws FileNotFoundException {
         File file = new File(fileName);
         if (!file.exists()){
@@ -128,6 +130,7 @@ public class Helper {
         }
     }
 
+    // Чтение из файла
     protected String readTXT(String fileName) throws FileNotFoundException {
 
         StringBuilder sb = new StringBuilder();
@@ -155,6 +158,7 @@ public class Helper {
         return sb.toString();
     }
 
+    // Проверка элемента на отображение
     protected boolean isElementPresent(By by){
         try {
             driver.findElement(by);
@@ -164,10 +168,12 @@ public class Helper {
         }
     }
 
+    // Проверка радиобаттона на активность
     protected void radioActive(By by){
         Assert.assertTrue(driver.findElement(by).getAttribute("class").contains("active"));
     }
 
+    // Проверка текста в элементе на соответствие строке
     protected void textCorrect(By by, String text2){
         String text1 = driver.findElement(by).getText();
         try{
@@ -180,6 +186,7 @@ public class Helper {
         }
     }
 
+    // Проверка текста в поле на соответствие строке
     protected void valueCorrect(By by, String text){
         String value1 = driver.findElement(by).getAttribute("value");
 
@@ -199,9 +206,15 @@ public class Helper {
 //        }
     }
 
+    // Ховер по элементу
     protected void hover(By by){
         Actions action = new Actions(driver);
         WebElement we = driver.findElement(by);
         action.moveToElement(we).build().perform();
+    }
+
+    // Очистка поля
+    protected  void clear(By by){
+        driver.findElement(by).clear();
     }
 }

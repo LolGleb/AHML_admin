@@ -479,28 +479,28 @@ public class TestObjectsList extends Helper {
 
         valueCorrect(add.apartNumber, apartNumberFromTxt);
 
-        driver.findElement(add.price).clear();
+        clear(add.price);
         sendKeys(add.price, price);
 
-        driver.findElement(add.deposit).clear();
+        clear(add.deposit);
         sendKeys(add.deposit ,deposit);
 
-        driver.findElement(add.minMonth).clear();
+        clear(add.minMonth);
         sendKeys(add.minMonth, minMonth);
 
-        driver.findElement(add.floor).clear();
+        clear(add.floor);
         sendKeys(add.floor ,floor);
 
         click(add.room1);
         radioActive(add.room1);
 
-        driver.findElement(add.areaTotal).clear();
+        clear(add.areaTotal);
         sendKeys(add.areaTotal, areaTotal);
-        driver.findElement(add.areaKitchen).clear();
+        clear(add.areaKitchen);
         sendKeys(add.areaKitchen, areaKitchen);
-        driver.findElement(add.areaLiving).clear();
+        clear(add.areaLiving);
         sendKeys(add.areaLiving, areaLiving);
-        driver.findElement(add.areaRooms1).clear();
+        clear(add.areaRooms1);
         sendKeys(add.areaRooms1 ,areaRooms1);
 
         click(add.decorWhite);
@@ -526,22 +526,22 @@ public class TestObjectsList extends Helper {
         click(add.windowComb);
         radioActive(add.windowComb);
 
-        driver.findElement(add.passportRu).clear();
+        clear(add.passportRu);
         sendKeys(add.passportRu, passportRu);
         click(add.passportSwitchToEng);
-        driver.findElement(add.passportEn).clear();
+        clear(add.passportEn);
         sendKeys(add.passportEn, passportEn);
         click(add.passportSwitchToRu);
 
-        driver.findElement(add.descriptionRu).clear();
+        clear(add.descriptionRu);
         sendKeys(add.descriptionRu, descriptionRu);
         click(add.descriptionSwitchToEng);
-        driver.findElement(add.descriptionEn).clear();
+        clear(add.descriptionEn);
         sendKeys(add.descriptionEn, descriptionEn);
         click(add.descriptionSwitchToRu);
 
-        driver.findElement(add.tour3d).clear();
-        driver.findElement(add.tour3d).sendKeys(tour);
+        clear(add.tour3d);
+        sendKeys(add.tour3d, tour);
 
         String filePath = System.getProperty("user.dir") + "\\files\\004.jpg";
         setClipboardData(filePath);
@@ -595,8 +595,8 @@ public class TestObjectsList extends Helper {
         textCorrect(card.decor, "Белый");
         textCorrect(card.furniture, "Без мебели");
         textCorrect(card.repair, "Советский");
-        //textCorrect(card.balcony, "2 балкона и Лоджия");
-        //textCorrect(card.wc,"2 совмещенных и Раздельный");
+        textCorrect(card.balcony, "2 балкона и Лоджия");
+        textCorrect(card.wc,"Совмещённый и Раздельный");
         textCorrect(card.view, "На улицу и двор");
         textCorrect(card.passport, passportRu);
         textCorrect(card.description, descriptionRu);
@@ -617,6 +617,24 @@ public class TestObjectsList extends Helper {
         // Проверка карточки>
     }
 
-    // Добавить метод открытия, перелистывания и закрытия фото
+    @Test(description = "Проверка фильтров", priority = 3)
+    public void checkFilters() throws InterruptedException, AWTException, FileNotFoundException {
 
+        // </Авторизация
+        AuthorizationPage auth = new AuthorizationPage();
+        CommonData user = new CommonData();
+        autorizationAs(user.userEmail, user.userPass);
+        waitBy(auth.elementInObjectsList, 20);
+        // Авторизация>
+
+        ObjectsListPage list = new ObjectsListPage();
+
+        String apartNumber = "25";
+
+        sendKeys(list.filterSearch, apartNumber);
+
+        waitBy(By.xpath("//a[text()='"+apartNumber+"']"), 20);
+
+        clear(list.filterSearch);
+    }
 }
