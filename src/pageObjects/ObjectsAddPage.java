@@ -94,11 +94,13 @@ public class ObjectsAddPage {
     public By doubleGlazing = By.xpath("//input[@ng-model='obj.facilities.doubleGlazing']");
     public By signaling = By.xpath("//input[@ng-model='obj.facilities.signaling']");
 
-    public By passport = By.xpath("//div[@class='ng-pristine ng-untouched ng-valid ta-bind ng-empty']");
+    public By passportRu = By.xpath("//div[@id='ru_p']/div/div[2]/div[3]");
+    public By passportEn = By.xpath("//div[@id='en_p']/div/div[2]/div[3]");
     public By passportSwitchToEng = By.xpath("//div[@class='ng-scope']/div[18]//a[contains(text(),'En')]");
     public By passportSwitchToRu = By.xpath("//div[@class='ng-scope']/div[18]//a[contains(text(),'Ру')]");
 
-    public By description = By.xpath("//textarea[@class='form-control ng-pristine ng-untouched ng-valid ng-empty']");
+    public By descriptionRu = By.xpath("//div[@id='ru_d']/textarea");
+    public By descriptionEn = By.xpath("//div[@id='en_d']/textarea");
     public By descriptionSwitchToEng = By.xpath("//div[@class='ng-scope']/div[19]//a[contains(text(),'En')]");
     public By descriptionSwitchToRu = By.xpath("//div[@class='ng-scope']/div[19]//a[contains(text(),'Ру')]");
 
@@ -108,7 +110,9 @@ public class ObjectsAddPage {
     public By optionPhotoWindow = By.xpath("//div[1]/select/option[7]");
     public By optionPhotoKitchen = By.xpath("//div[1]/select[@ng-model='file.place']/option[text()='Кухня']");
     public By delPhoto2 = By.xpath("//div[2]/button[@class='btn btn-danger item-preview-close']");
-
-
+    public By nextPhoto = By.cssSelector("div.tru-slider__handler--next");
+    public By prevPhoto = By.cssSelector("div.tru-slider__handler--prev");
+    public By closePhoto = By.cssSelector("div.modal-photos__close");
+    public By photo = By.xpath("//img");
     // Параметры объекта>
 }

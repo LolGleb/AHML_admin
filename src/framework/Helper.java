@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Mouse;
 import org.openqa.selenium.internal.Locatable;
@@ -187,5 +188,20 @@ public class Helper {
         } catch (AssertionError ex){
             throw new RuntimeException(value1+" не то же самое что "+text);
         }
+//        try {
+//
+//            Assert.assertFalse(driver.findElements(By.cssSelector("")).size() > 0);
+//
+//        } catch (AssertionError ex){
+//
+//            throw new RuntimeException("hdskhdksh");
+//
+//        }
+    }
+
+    protected void hover(By by){
+        Actions action = new Actions(driver);
+        WebElement we = driver.findElement(by);
+        action.moveToElement(we).build().perform();
     }
 }

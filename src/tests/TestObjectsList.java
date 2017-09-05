@@ -26,9 +26,9 @@ public class TestObjectsList extends Helper {
 
         driver = getDriver();
 
-        driver.manage().timeouts().implicitlyWait(50000, TimeUnit.MILLISECONDS);
-        driver.manage().timeouts().pageLoadTimeout(50000, TimeUnit.MILLISECONDS);
-        driver.manage().timeouts().setScriptTimeout(50000, TimeUnit.MILLISECONDS);
+        driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
+        driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.MILLISECONDS);
+        driver.manage().timeouts().setScriptTimeout(10000, TimeUnit.MILLISECONDS);
     }
 
     @AfterMethod
@@ -265,14 +265,14 @@ public class TestObjectsList extends Helper {
         click(add.windowYard);
         radioActive(add.windowYard);
 
-        sendKeys(add.passport, passportRu);
+        sendKeys(add.passportRu, passportRu);
         click(add.passportSwitchToEng);
-        sendKeys(add.passport, passportEn);
+        sendKeys(add.passportEn, passportEn);
         click(add.passportSwitchToRu);
 
-        sendKeys(add.description, descriptionRu);
+        sendKeys(add.descriptionRu, descriptionRu);
         click(add.descriptionSwitchToEng);
-        sendKeys(add.description, descriptionEn);
+        sendKeys(add.descriptionEn, descriptionEn);
         click(add.descriptionSwitchToRu);
 
         sendKeys(add.tour3d, tour);
@@ -326,7 +326,17 @@ public class TestObjectsList extends Helper {
         robot3.keyPress(KeyEvent.VK_ENTER);
         robot3.keyRelease(KeyEvent.VK_ENTER);
 
-        sleep(10000);
+        sleep(7000);
+
+        click(add.photo);
+        hover(add.nextPhoto);
+        click(add.nextPhoto);
+        sleep(3000);
+        click(add.nextPhoto);
+        sleep(3000);
+        click(add.prevPhoto);
+        sleep(3000);
+        click(add.closePhoto);
 
         click(add.dropDownPhoto);
         click(add.optionPhotoWindow);
@@ -342,13 +352,12 @@ public class TestObjectsList extends Helper {
             click(add.saveObject);
 
             sleep(5000);
-            System.out.println("start1");
-            if(isElementPresent(By.xpath("//div[@class='text-danger ng-binding ng-scope']"))){
-                System.out.println("start2");
+
+            if(isElementPresent(By.cssSelector("div.text-danger"))){
+
                 y++;
 
             } else {
-                System.out.println("start3");
 
                 writeToFile("apartNumber.txt", ss);
 
@@ -398,6 +407,15 @@ public class TestObjectsList extends Helper {
         textCorrect(card.tour, tour);
         waitBy(card.photo1, 20);
         waitBy(card.photo2, 20);
+        click(card.photo1);
+        hover(card.nextPhoto);
+        click(card.nextPhoto);
+        sleep(3000);
+        click(card.nextPhoto);
+        sleep(3000);
+        click(card.prevPhoto);
+        sleep(3000);
+        click(card.closePhoto);
         textCorrect(card.dropdown1, "Вид из окна");
         textCorrect(card.dropdown2, "Не определен");
         // Проверка карточки>
@@ -438,6 +456,7 @@ public class TestObjectsList extends Helper {
         String descriptionEn = "I HAVE EDITED THIS WITH THE HELP OF AUTOMATION";
         String tour = "https://33slona.ru/";
 
+        // </Редактирование объекта
         sendKeys(list.filterSearch, apartNumberFromTxt);
 
         waitBy(list.dropdown, 20);
@@ -507,18 +526,18 @@ public class TestObjectsList extends Helper {
         click(add.windowComb);
         radioActive(add.windowComb);
 
-        driver.findElement(add.passport).clear();
-        sendKeys(add.passport, passportRu);
+        driver.findElement(add.passportRu).clear();
+        sendKeys(add.passportRu, passportRu);
         click(add.passportSwitchToEng);
-        driver.findElement(add.passport).clear();
-        sendKeys(add.passport, passportEn);
+        driver.findElement(add.passportEn).clear();
+        sendKeys(add.passportEn, passportEn);
         click(add.passportSwitchToRu);
 
-        driver.findElement(add.description).clear();
-        sendKeys(add.description, descriptionRu);
+        driver.findElement(add.descriptionRu).clear();
+        sendKeys(add.descriptionRu, descriptionRu);
         click(add.descriptionSwitchToEng);
-        driver.findElement(add.description).clear();
-        sendKeys(add.description, descriptionEn);
+        driver.findElement(add.descriptionEn).clear();
+        sendKeys(add.descriptionEn, descriptionEn);
         click(add.descriptionSwitchToRu);
 
         driver.findElement(add.tour3d).clear();
@@ -541,13 +560,25 @@ public class TestObjectsList extends Helper {
 
         sleep(5000);
 
+        click(add.photo);
+        hover(add.nextPhoto);
+        click(add.nextPhoto);
+        sleep(3000);
+        click(add.nextPhoto);
+        sleep(3000);
+        click(add.prevPhoto);
+        sleep(3000);
+        click(add.closePhoto);
+
         click(add.dropDownPhoto);
         click(add.optionPhotoKitchen);
         click(add.dropDownPhoto);
         click(add.delPhoto2);
 
         click(add.saveObject);
+        // Редактирование объекта>
 
+        // </Проверка карточки
         waitBy(card.toastSuccess, 20);
         waitBy(card.elementInObjectCard, 20);
 
@@ -572,8 +603,18 @@ public class TestObjectsList extends Helper {
         textCorrect(card.tour, tour);
         waitBy(card.photo1, 20);
         waitBy(card.photo2, 20);
+        click(card.photo1);
+        hover(card.nextPhoto);
+        click(card.nextPhoto);
+        sleep(3000);
+        click(card.nextPhoto);
+        sleep(3000);
+        click(card.prevPhoto);
+        sleep(3000);
+        click(card.closePhoto);
         textCorrect(card.dropdown1, "Кухня");
         textCorrect(card.dropdown2, "Не определен");
+        // Проверка карточки>
     }
 
     // Добавить метод открытия, перелистывания и закрытия фото

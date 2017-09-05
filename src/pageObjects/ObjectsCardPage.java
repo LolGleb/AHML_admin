@@ -54,6 +54,12 @@ public class ObjectsCardPage {
 
     public By photo2 = By.xpath("//div[2]/div[1]/img");
 
+    public By nextPhoto = By.cssSelector("div.tru-slider__handler--next");
+
+    public By prevPhoto = By.cssSelector("div.tru-slider__handler--prev");
+
+    public By closePhoto = By.cssSelector("div.modal-photos__close");
+
     public By dropdown1 = By.xpath("//div[1]/div[2][@class='ng-binding']");
 
     public By dropdown2 = By.xpath("//div[2]/div[2][@class='ng-binding']");
