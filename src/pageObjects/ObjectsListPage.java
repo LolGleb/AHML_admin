@@ -51,15 +51,25 @@ public class ObjectsListPage {
 
     public By filterSearch = By.xpath("//input");
 
-    public By filterFloor = By.xpath("//div[@class='multi-filters-toolbar-element ng-scope floor-filter']");
+    public By filterFloor = By.xpath("//div[2]/div[2]/select");
 
-    public By filterRoom = By.xpath("//div[@class='multi-filters-toolbar-element ng-scope room-filter']");
+    public By filterRoom = By.xpath("//div[3]/div[2]/select");
 
-    public By filterStatus= By.xpath("//div[@class='multi-filters-toolbar-element ng-scope status-filter']");
+    public By filterStatus= By.xpath("//div[4]/div/select");
 
     public By addNewObject = By.name("qa-add-obj-btn");
 
     public By dropdown = By.xpath("//tr[1]//a[@data-toggle='dropdown']");
 
     public By editObject = By.xpath("//tr[1]//a[text()='Редактировать...']");
+
+    public By phoneNumber = By.xpath("//tr[1]/td[9]/div/a");
+
+    public By renter = By.xpath("//tr[1]/td[9]/div/span/a");
+
+    public By allFloors = By.xpath("//td[3][@class='ng-binding ng-scope']");
+
+    public By allRooms = By.xpath("//td[4][@class='ng-binding ng-scope']");
+
+    public By preloader = By.cssSelector("div.preloader");
 }

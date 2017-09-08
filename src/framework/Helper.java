@@ -62,6 +62,12 @@ public class Helper {
 
     }
 
+    protected void waitTillNotPresented(By by, int time) {
+
+        new WebDriverWait(driver, time).until(ExpectedConditions.invisibilityOfElementLocated(by));
+
+    }
+
     // Прокрутка вниз (хз как работает)
     protected void scrollDown() {
 

@@ -342,6 +342,7 @@ public class TestObjectsList extends Helper {
         click(add.optionPhotoWindow);
         click(add.delPhoto2);
 
+        // </ Подбор номера апарта
         for(;;){
 
             String ss = String.valueOf(y);
@@ -366,6 +367,8 @@ public class TestObjectsList extends Helper {
             }
 
         }
+        // Подбор номера апарта>
+
         // Добавление объекта>
 
         // </Проверка карточки
@@ -630,11 +633,102 @@ public class TestObjectsList extends Helper {
         ObjectsListPage list = new ObjectsListPage();
 
         String apartNumber = "25";
+        String tel = "+7 903 306-31-36";
+        String renter = "Съёмщиков Глебушка Сергеевич";
+        String floor = "7";
+        String roomCount = "Студия";
 
         sendKeys(list.filterSearch, apartNumber);
-
         waitBy(By.xpath("//a[text()='"+apartNumber+"']"), 20);
-
         clear(list.filterSearch);
+        sleep(2000);
+
+        sendKeys(list.filterSearch, "+79033063136");
+        sleep(2000);
+        waitBy(list.phoneNumber, 20);
+        textCorrect(list.phoneNumber, tel);
+        clear(list.filterSearch);
+        sleep(2000);
+        sendKeys(list.filterSearch, "79033063136");
+        sleep(2000);
+        waitBy(list.phoneNumber, 20);
+        textCorrect(list.phoneNumber, tel);
+        clear(list.filterSearch);
+        sleep(2000);
+        sendKeys(list.filterSearch, "89033063136");
+        sleep(2000);
+        waitBy(list.phoneNumber, 20);
+        textCorrect(list.phoneNumber, tel);
+        clear(list.filterSearch);
+        sleep(2000);
+        sendKeys(list.filterSearch, "9033063136");
+        sleep(2000);
+        waitBy(list.phoneNumber, 20);
+        textCorrect(list.phoneNumber, tel);
+        clear(list.filterSearch);
+        sleep(2000);
+        sendKeys(list.filterSearch, "+7 (903) 306-31-36");
+        sleep(2000);
+        waitBy(list.phoneNumber, 20);
+        textCorrect(list.phoneNumber, tel);
+        clear(list.filterSearch);
+        sleep(2000);
+        sendKeys(list.filterSearch, "3136");
+        sleep(2000);
+        waitBy(list.phoneNumber, 20);
+        textCorrect(list.phoneNumber, tel);
+        clear(list.filterSearch);
+        sleep(2000);
+        sendKeys(list.filterSearch, "903 36");
+        sleep(2000);
+        waitBy(list.phoneNumber, 20);
+        textCorrect(list.phoneNumber, tel);
+        clear(list.filterSearch);
+        sleep(2000);
+
+        sendKeys(list.filterSearch, "Глебушка");
+        sleep(2000);
+        waitBy(list.renter, 20);
+        textCorrect(list.renter, renter);
+        clear(list.filterSearch);
+        sleep(2000);
+        sendKeys(list.filterSearch, "бушка");
+        sleep(2000);
+        waitBy(list.renter, 20);
+        textCorrect(list.renter, renter);
+        clear(list.filterSearch);
+        sleep(2000);
+        sendKeys(list.filterSearch, "Съёмщиков Сергеевич");
+        sleep(2000);
+        waitBy(list.renter, 20);
+        textCorrect(list.renter, renter);
+        clear(list.filterSearch);
+        sleep(2000);
+        sendKeys(list.filterSearch, "ГЛЕ ЕВИЧ");
+        sleep(2000);
+        waitBy(list.renter, 20);
+        textCorrect(list.renter, renter);
+        clear(list.filterSearch);
+        sleep(2000);
+
+        sendKeys(list.filterFloor, floor);
+        sleep(2000);
+        waitBy(list.allFloors, 20);
+        List<WebElement> floors = driver.findElements(list.allFloors);
+        for (WebElement a : floors){
+            Assert.assertTrue(a.getText().contains(floor));
+        }
+        sendKeys(list.filterFloor, "Все этажи");
+        sleep(2000);
+
+        sendKeys(list.filterRoom, roomCount);
+        sleep(2000);
+        waitBy(list.allRooms, 20);
+        List<WebElement> rooms = driver.findElements(list.allRooms);
+        for (WebElement a : rooms){
+            Assert.assertTrue(a.getText().contains(roomCount));
+        }
+        sendKeys(list.filterRoom, "Все апартаменты");
+        sleep(2000);
     }
 }
